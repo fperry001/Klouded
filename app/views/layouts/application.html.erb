@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Klouded</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+
+
+  	  <!-- Start of nav bar -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active" id="sitename"><%= link_to 'Klouded', root_path %><span class="sr-only">(current)</span></a></li>
+            <li><%= link_to "Thoughts", tweets_path %></li>
+            <li><%= link_to "Share", new_tweet_path %></li>
+
+            <!-- Checks to see if user is signed in and gives them a signout link and a greeting -->
+          
+              <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                <% if user_signed_in? %>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+              </li>
+      
+
+              <% if current_user.avatar.url != nil %>
+                 
+                <li><%= image_tag current_user.avatar.url %></li>
+              <% end %> 
+          
+
+            <% end %>
+          </ul>
+
+          
+          
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+
+
+    <!-- End of Nav bar -->
+
+
+   <h1 id="main_sitename">Klouded</h1>
+
+  	
+    <center><%= yield %></center>
+
+    <div class="footer">Official Klouded &copy 2018 </div>
+  </body>
+</html>
